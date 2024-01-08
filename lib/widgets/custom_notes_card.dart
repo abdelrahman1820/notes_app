@@ -18,7 +18,7 @@ class CustomNotesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
           color: getRandomColor(), borderRadius: BorderRadius.circular(15)),
@@ -28,7 +28,7 @@ class CustomNotesCard extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-              left: 30,
+              left: 20,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,9 +45,9 @@ class CustomNotesCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 50.0),
                   child: Text(
-                    "Build your career with\n tharwt samio",
+                    "Build your career with\n tharwt samy",
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         height: 1,
                         color: Colors.black.withOpacity(.8),
                         fontStyle: FontStyle.normal),
@@ -60,7 +60,7 @@ class CustomNotesCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(
               top: 45,
-              right: 10,
+              right: 20,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

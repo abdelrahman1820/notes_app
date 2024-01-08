@@ -32,10 +32,14 @@ class CustomAppBar extends StatelessWidget {
             decoration: BoxDecoration(
                 color: const Color(0XFF3A3A3A),
                 borderRadius: BorderRadius.circular(15)),
-            child: const Icon(
-              Icons.search,
-              weight: 100,
-              size: 30,
+            child: IconButton(
+              icon: Icon(
+                Icons.search,
+                size: 30,
+              ),
+              onPressed: () {
+                print("searchclicked");
+              },
             ),
           )
         ],
