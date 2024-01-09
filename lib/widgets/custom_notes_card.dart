@@ -88,8 +88,8 @@ class CustomNotesCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8.0),
                       child: Icon(
                         Icons.date_range,
                         color: Colors.black,

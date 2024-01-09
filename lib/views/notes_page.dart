@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:notesapp/widgets/contentofbottomsheet.dart';
+import 'package:notesapp/widgets/content_ofbottom_sheet.dart';
 import 'package:notesapp/widgets/custom_app_bar.dart';
 import 'package:notesapp/widgets/custom_notes_card.dart';
 import 'package:notesapp/widgets/custom_text_field.dart';
@@ -15,8 +15,6 @@ class NotesPage extends StatefulWidget {
   State<NotesPage> createState() => _NotesPageState();
 }
 
-
-
 class _NotesPageState extends State<NotesPage> {
   @override
   Widget build(BuildContext context) {
@@ -24,9 +22,13 @@ class _NotesPageState extends State<NotesPage> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
               context: context,
               builder: (BuildContext context) {
-                return ContentOfBootomSheet();
+                return ListView(children: [ContentOfBootomSheet()],);
               },
             );
           },
@@ -35,4 +37,3 @@ class _NotesPageState extends State<NotesPage> {
         body: NotesBody());
   }
 }
-

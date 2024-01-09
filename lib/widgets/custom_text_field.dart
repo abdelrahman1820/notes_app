@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class EditInPutText extends StatelessWidget {
   final TextEditingController textController;
@@ -10,25 +10,26 @@ class EditInPutText extends StatelessWidget {
   String mylabel;
   Function(String)? onChanged;
   TextInputType input;
+  int? libe;
 
-  EditInPutText({
-    required this.textController,
-    required this.focusNodee,
-    required this.isEmpty,
-    required this.myicon,
-    required this.myhint,
-    required this.mylabel,
-    required this.input,
-    required this.onChanged,
-  });
+  EditInPutText(
+      {required this.textController,
+      required this.focusNodee,
+      required this.isEmpty,
+      required this.myicon,
+      required this.myhint,
+      required this.mylabel,
+      required this.input,
+      required this.onChanged,
+      this.libe=1});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
       child: TextField(
-        keyboardType:input ,
-
+        keyboardType: input,
+        maxLines: libe ,
         controller: textController,
         focusNode: focusNodee,
         onChanged: onChanged,
@@ -58,7 +59,7 @@ class EditInPutText extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(
-                color: isEmpty ? Colors.blue : Colors.green, width: 2),
+                color: isEmpty ? Colors.black : Colors.green, width: 2),
           ),
         ),
       ),
