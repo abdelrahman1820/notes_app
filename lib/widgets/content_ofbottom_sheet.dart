@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/widgets/const.dart';
 import 'package:notesapp/widgets/custom_add_botton.dart';
 import 'package:notesapp/widgets/custom_text_field.dart';
 
@@ -9,19 +10,16 @@ class ContentOfBootomSheet extends StatefulWidget {
   State<ContentOfBootomSheet> createState() => _ContentOfBootomSheetState();
 }
 
-final TextEditingController titleController = TextEditingController();
-final TextEditingController noteController = TextEditingController();
-
-final FocusNode focusNodee = FocusNode();
-late FocusScopeNode currentNode;
-bool isEmptytitle = true;
-bool isEmptyprice = true;
-final FocusNode titleFocusNode = FocusNode();
-final FocusNode notestFocusNode = FocusNode();
-
-bool isloading = false;
-
 class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
+  void dispose() {
+    // TODO: implement dispose
+
+    titleController.clear();
+    noteController.clear();
+    super.dispose();
+   
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -77,8 +75,10 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
                     myhint: "enter notes",
                     mylabel: "notes",
                     input: TextInputType.text),
-                    const SizedBox(height: 45,),
-                CustomAddButtomButton()
+                const SizedBox(
+                  height: 45,
+                ),
+                const CustomAddButtomButton()
               ],
             ),
           ),
@@ -87,4 +87,3 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
     );
   }
 }
-

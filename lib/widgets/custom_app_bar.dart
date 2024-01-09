@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
-    super.key,
-  });
+  const CustomAppBar({super.key, required this.text, required this.icon});
+  final String text;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +15,11 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 8.0),
             child: Text(
-              "Notes",
-              style: TextStyle(
+              text,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 30,
               ),
@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15)),
             child: IconButton(
               icon: Icon(
-                Icons.search,
+                icon,
                 size: 30,
               ),
               onPressed: () {

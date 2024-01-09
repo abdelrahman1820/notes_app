@@ -19,7 +19,7 @@ class CustomAddButtomButton extends StatelessWidget {
         ),
         height: 60,
         width: MediaQuery.of(context).size.width,
-        child: Center(
+        child: const Center(
             child: Text(
           "AddNote",
           style: TextStyle(fontSize: 20),

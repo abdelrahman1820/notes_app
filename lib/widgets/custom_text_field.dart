@@ -21,7 +21,7 @@ class EditInPutText extends StatelessWidget {
       required this.mylabel,
       required this.input,
       required this.onChanged,
-      this.libe=1});
+      this.libe = 1});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class EditInPutText extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
       child: TextField(
         keyboardType: input,
-        maxLines: libe ,
+        maxLines: libe,
         controller: textController,
         focusNode: focusNodee,
         onChanged: onChanged,
@@ -53,13 +53,11 @@ class EditInPutText extends StatelessWidget {
           border: InputBorder.none,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: BorderSide(
-                color: isEmpty ? Colors.red : Colors.green, width: 2),
+            borderSide: const BorderSide(color: Colors.green, width: 2),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: BorderSide(
-                color: isEmpty ? Colors.black : Colors.green, width: 2),
+            borderSide: const BorderSide(color: Colors.black, width: 2),
           ),
         ),
       ),
