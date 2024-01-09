@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CustomNotesCard extends StatelessWidget {
   CustomNotesCard();
@@ -13,6 +14,11 @@ class CustomNotesCard extends StatelessWidget {
     int blue = random.nextInt(128) + 128;
 
     return Color.fromARGB(255, red, green, blue).withOpacity(1.0);
+  }
+
+  DateTime date = DateTime.now();
+  String formattedDate() {
+    return DateFormat('yyyy-MM-dd').format(date);
   }
 
   @override
@@ -80,9 +86,20 @@ class CustomNotesCard extends StatelessWidget {
                   width: 2,
                   height: 70,
                 ),
-                const Text(
-                  "May21.2022",
-                  style: TextStyle(color: Colors.black),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Icon(
+                        Icons.date_range,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      formattedDate(),
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
                 )
               ],
             ),

@@ -9,8 +9,9 @@ class NotesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 12, right: 12),
+      padding: const EdgeInsets.only(top: 12.0, left: 12, right: 12, bottom: 8),
       child: ListView.builder(
+        padding: EdgeInsets.zero,
         itemCount: 4, // Specify the number of items in the list
         itemBuilder: (BuildContext context, int index) {
           return CustomNotesCard(); // Use the custom card widget directly
