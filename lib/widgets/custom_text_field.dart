@@ -53,11 +53,13 @@ class EditInPutText extends StatelessWidget {
           border: InputBorder.none,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(color: Colors.green, width: 2),
+            borderSide: BorderSide(
+                color: isEmpty ? Colors.red : Colors.green, width: 2),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(color: Colors.black, width: 2),
+            borderSide: BorderSide(
+                color: isEmpty ? Colors.blue : Colors.green, width: 2),
           ),
         ),
       ),

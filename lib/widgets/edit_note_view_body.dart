@@ -19,10 +19,11 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
 
     titleController.clear();
     noteController.clear();
+    isEmptyprice = true;
+    isEmptytitle = true;
     super.dispose();
-    
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,47 +36,49 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50.0),
-              child: CustomAppBar(text: "Editnotes", icon: Icons.done),
-            ),
-            EditInPutText(
-                onChanged: (value) {
-                  setState(() {
-                    isEmptytitle = value.isEmpty;
-                  });
-                },
-                textController: titleController,
-                focusNodee: titleFocusNode,
-                isEmpty: isEmptytitle,
-                myicon: Icons.title,
-                myhint: "enter title",
-                mylabel: "title",
-                input: TextInputType.text),
-            const SizedBox(
-              height: 10,
-            ),
-            EditInPutText(
-                libe: 4,
-                onChanged: (value) {
-                  setState(() {
-                    isEmptyprice = value.isEmpty;
-                  });
-                },
-                textController: noteController,
-                focusNodee: notestFocusNode,
-                isEmpty: isEmptyprice,
-                myicon: Icons.note_alt_rounded,
-                myhint: "enter notes",
-                mylabel: "notes",
-                input: TextInputType.text),
-            const SizedBox(
-              height: 45,
-            ),
-            const CustomAddButtomButton()
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: CustomAppBar(text: "Editnotes", icon: Icons.done),
+              ),
+              EditInPutText(
+                  onChanged: (value) {
+                    setState(() {
+                      isEmptytitle = value.isEmpty;
+                    });
+                  },
+                  textController: titleController,
+                  focusNodee: titleFocusNode,
+                  isEmpty: isEmptytitle,
+                  myicon: Icons.title,
+                  myhint: "enter title",
+                  mylabel: "title",
+                  input: TextInputType.text),
+              const SizedBox(
+                height: 10,
+              ),
+              EditInPutText(
+                  libe: 4,
+                  onChanged: (value) {
+                    setState(() {
+                      isEmptyprice = value.isEmpty;
+                    });
+                  },
+                  textController: noteController,
+                  focusNodee: notestFocusNode,
+                  isEmpty: isEmptyprice,
+                  myicon: Icons.note_alt_rounded,
+                  myhint: "enter notes",
+                  mylabel: "notes",
+                  input: TextInputType.text),
+              const SizedBox(
+                height: 45,
+              ),
+              const CustomAddButtomButton()
+            ],
+          ),
         ),
       ),
     );

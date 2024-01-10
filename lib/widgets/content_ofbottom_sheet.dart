@@ -16,8 +16,9 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
 
     titleController.clear();
     noteController.clear();
+    isEmptyprice = true;
+    isEmptytitle = true;
     super.dispose();
-   
   }
 
   @override
