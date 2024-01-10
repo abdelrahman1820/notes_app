@@ -76,7 +76,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               const SizedBox(
                 height: 45,
               ),
-              const CustomAddButtomButton()
+               CustomAddButtomButton(ontap: () {  },)
             ],
           ),
         ),

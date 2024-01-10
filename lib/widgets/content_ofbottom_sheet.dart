@@ -21,6 +21,8 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
     super.dispose();
   }
 
+  String? title, subtitle;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -47,39 +49,54 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
             child: Column(
               children: [
                 EditInPutText(
-                    onChanged: (value) {
-                      setState(() {
-                        isEmptytitle = value.isEmpty;
-                      });
-                    },
-                    textController: titleController,
-                    focusNodee: titleFocusNode,
-                    isEmpty: isEmptytitle,
-                    myicon: Icons.title,
-                    myhint: "enter title",
-                    mylabel: "title",
-                    input: TextInputType.text),
+                  onChanged: (value) {
+                    title = value;
+                    setState(() {
+                      isEmptytitle = value.isEmpty;
+                    });
+                  },
+                  textController: titleController,
+                  focusNodee: titleFocusNode,
+                  isEmpty: isEmptytitle,
+                  myicon: Icons.title,
+                  myhint: "enter title",
+                  mylabel: "title",
+                  input: TextInputType.text,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
                 EditInPutText(
-                    libe: 4,
-                    onChanged: (value) {
-                      setState(() {
-                        isEmptyprice = value.isEmpty;
-                      });
-                    },
-                    textController: noteController,
-                    focusNodee: notestFocusNode,
-                    isEmpty: isEmptyprice,
-                    myicon: Icons.note_alt_rounded,
-                    myhint: "enter notes",
-                    mylabel: "notes",
-                    input: TextInputType.text),
+                  libe: 4,
+                  onChanged: (value) {
+                    subtitle = value;
+                    setState(() {
+                      isEmptyprice = value.isEmpty;
+                    });
+                  },
+                  textController: noteController,
+                  focusNodee: notestFocusNode,
+                  isEmpty: isEmptyprice,
+                  myicon: Icons.note_alt_rounded,
+                  myhint: "enter notes",
+                  mylabel: "notes",
+                  input: TextInputType.text,
+                ),
                 const SizedBox(
                   height: 45,
                 ),
-                const CustomAddButtomButton()
+                CustomAddButtomButton(
+                  ontap: () {
+                    if (title == null ||
+                        title!.isEmpty ||
+                        subtitle == null ||
+                        subtitle!.isEmpty) {
+                      showErrorDialog(context);
+                    } else {
+                      print("titles is $title and sub title is $subtitle");
+                    }
+                  },
+                )
               ],
             ),
           ),
@@ -87,4 +104,43 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
       ),
     );
   }
+}
+
+void showErrorDialog(
+  BuildContext context,
+) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.red,
+        title: const Text('Error'),
+        content: const Row(
+          children: [
+            Icon(Icons.error, color: Colors.black),
+            SizedBox(
+              width: 4,
+            ),
+            Text("Please Enter All feilds"),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Container(
+              width: 50,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: Colors.black, borderRadius: BorderRadius.circular(10)),
+              child: const Center(
+                child: Text('OK'),
+              ),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
