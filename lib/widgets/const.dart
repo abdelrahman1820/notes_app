@@ -9,3 +9,4 @@ bool isEmptytitle = true;
 bool isEmptyprice = true;
 final FocusNode titleFocusNode = FocusNode();
 final FocusNode notestFocusNode = FocusNode();
+String kNotesBox = "notes_box";
