@@ -6,13 +6,26 @@ import 'package:notesapp/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/simple_bloc_observer.dart';
 import 'package:notesapp/views/notes_page.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() async {
-  await Hive.initFlutter(); //بنشأ Hive
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//    final directory = await getApplicationDocumentsDirectory();
+//   Hive.init(directory.path);
+
+//   Bloc.observer = SimpleBlocObserver();
+//   await Hive.openBox<NoteModel>(kNotesBox);
+//   Hive.registerAdapter(NoteModelAdapter());
+//   runApp(const NotesApp());
+// }
+Future main() async {
   Bloc.observer = SimpleBlocObserver();
-  await Hive.openBox(kNotesBox); //بفتح بوكس عشان اخزن فيه
-  Hive.registerAdapter(
-      NoteModelAdapter()); //بعمل ريجيستر علي الفايل الي اتعمله اوتو كرييت
+  WidgetsFlutterBinding.ensureInitialized();
+  final directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+  Hive.registerAdapter(NoteModelAdapter());
+  await Hive.openBox<NoteModel>(kNotesBox);
+
   runApp(const NotesApp());
 }
 
@@ -21,12 +34,9 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => Addnotecubit())],
-      child: MaterialApp(
-        theme: ThemeData(fontFamily: "Poppins", brightness: Brightness.dark),
-        home: NotesPage(),
-      ),
+    return MaterialApp(
+      theme: ThemeData(fontFamily: "Poppins", brightness: Brightness.dark),
+      home: NotesPage(),
     );
   }
 }
