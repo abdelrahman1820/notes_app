@@ -19,21 +19,28 @@ class _NotesPageState extends State<NotesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        // resizeToAvoidBottomInset:false,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
+              isScrollControlled: true,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               context: context,
               builder: (BuildContext context) {
-                return ListView(children: [ContentOfBootomSheet()],);
+                return Padding(
+                  padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: const SingleChildScrollView(
+                    child: ContentOfBootomSheet(),
+                  ),
+                );
               },
             );
           },
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
-        body: NotesBody());
+        body: const NotesBody());
   }
 }

@@ -40,8 +40,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 50.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 50.0),
                 child: CustomAppBar(text: "Editnotes", icon: Icons.done),
               ),
               EditInPutText(

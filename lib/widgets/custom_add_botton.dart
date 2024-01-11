@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomAddButtomButton extends StatelessWidget {
-   CustomAddButtomButton({
+  CustomAddButtomButton({
     required this.ontap,
     super.key,
   });
@@ -11,11 +11,11 @@ class CustomAddButtomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 8.0,
+        left: 8,
         right: 8,
       ),
       child: GestureDetector(
-        onTap:ontap ,
+        onTap: ontap,
         child: Container(
           decoration: BoxDecoration(
             color: Colors.black,
