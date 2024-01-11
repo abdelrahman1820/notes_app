@@ -60,112 +60,116 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
             }
           },
           builder: (context, state) {
-            return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading ? true : false,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+            return SizedBox(
+              height: 600,
+              child: ModalProgressHUD(
+                inAsyncCall: state is AddNoteLoading ? true : false,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.blueGrey,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
                   ),
-                ),
-                width: double.infinity,
-                height: 600,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 40),
-                    child: Column(
-                      children: [
-                        EditInPutText(
-                          onChanged: (value) {
-                            setState(() {
-                              isEmptytitle = value.isEmpty;
-                            });
-                          },
-                          textController: titleController,
-                          focusNodee: titleFocusNode,
-                          isEmpty: isEmptytitle,
-                          myicon: Icons.title,
-                          myhint: "enter title",
-                          mylabel: "title",
-                          input: TextInputType.text,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        EditInPutText(
-                          libe: 4,
-                          onChanged: (value) {
-                            setState(() {
-                              isEmptyprice = value.isEmpty;
-                            });
-                          },
-                          textController: noteController,
-                          focusNodee: notestFocusNode,
-                          isEmpty: isEmptyprice,
-                          myicon: Icons.note_alt_rounded,
-                          myhint: "enter notes",
-                          mylabel: "notes",
-                          input: TextInputType.text,
-                        ),
-                        const SizedBox(
-                          height: 45,
-                        ),
-                        CustomAddButtomButton(
-                          ontap: () {
-                            if (titleController.text.isEmpty ||
-                                noteController.text.isEmpty) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: Colors.red,
-                                    title: const Text('Error'),
-                                    content: const Row(
-                                      children: [
-                                        Icon(Icons.error, color: Colors.black),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Text("Please Enter All feilds"),
-                                      ],
-                                    ),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Container(
-                                          width: 50,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: Colors.black,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: const Center(
-                                            child: Text('OK'),
+                  width: double.infinity,
+                  height: 600,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Column(
+                        children: [
+                          EditInPutText(
+                            onChanged: (value) {
+                              setState(() {
+                                isEmptytitle = value.isEmpty;
+                              });
+                            },
+                            textController: titleController,
+                            focusNodee: titleFocusNode,
+                            isEmpty: isEmptytitle,
+                            myicon: Icons.title,
+                            myhint: "enter title",
+                            mylabel: "title",
+                            input: TextInputType.text,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          EditInPutText(
+                            libe: 4,
+                            onChanged: (value) {
+                              setState(() {
+                                isEmptyprice = value.isEmpty;
+                              });
+                            },
+                            textController: noteController,
+                            focusNodee: notestFocusNode,
+                            isEmpty: isEmptyprice,
+                            myicon: Icons.note_alt_rounded,
+                            myhint: "enter notes",
+                            mylabel: "notes",
+                            input: TextInputType.text,
+                          ),
+                          const SizedBox(
+                            height: 45,
+                          ),
+                          CustomAddButtomButton(
+                            ontap: () {
+                              if (titleController.text.isEmpty ||
+                                  noteController.text.isEmpty) {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.red,
+                                      title: const Text('Error'),
+                                      content: const Row(
+                                        children: [
+                                          Icon(Icons.error,
+                                              color: Colors.black),
+                                          SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text("Please Enter All feilds"),
+                                        ],
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Container(
+                                            width: 50,
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                                color: Colors.black,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: const Center(
+                                              child: Text('OK'),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            } else {
-                              var notemodel = NoteModel(
-                                  title: titleController.text,
-                                  subtitle: noteController.text,
-                                  date: formattedDate(),
-                                  color: Colors.amber.value);
-                              BlocProvider.of<Addnotecubit>(context)
-                                  .addnote(notemodel);
-                              print(
-                                  "titles is ${titleController.text} and sub title is ${noteController.text} form textcontroler");
-                            }
-                          },
-                        )
-                      ],
+                                      ],
+                                    );
+                                  },
+                                );
+                              } else {
+                                var notemodel = NoteModel(
+                                    title: titleController.text,
+                                    subtitle: noteController.text,
+                                    date: formattedDate(),
+                                    color: Colors.amber.value);
+                                BlocProvider.of<Addnotecubit>(context)
+                                    .addnote(notemodel);
+                                print(
+                                    "titles is ${titleController.text} and sub title is ${noteController.text} form textcontroler");
+                              }
+                            },
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
