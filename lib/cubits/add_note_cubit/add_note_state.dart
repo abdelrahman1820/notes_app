@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class NotesState {}
+abstract class AddNoteState {}
 
-class AddNoteInitial extends NotesState {}
+class AddNoteInitial extends AddNoteState {}
 
-class AddNoteLoading extends NotesState {}
+class AddNoteLoading extends AddNoteState {}
 
-class AddNoteSuccess extends NotesState {}
+class AddNoteSuccess extends AddNoteState {}
 
-class AddnoteFailur extends NotesState {
+class AddnoteFailur extends AddNoteState {
   final String errMessgae;
   AddnoteFailur({required this.errMessgae});
 }
