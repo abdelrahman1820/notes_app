@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.text, required this.icon});
+  const CustomAppBar({super.key, required this.text, required this.icon, this.onpress});
   final String text;
   final IconData icon;
+  final void Function()? onpress;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,7 @@ class CustomAppBar extends StatelessWidget {
                 icon,
                 size: 30,
               ),
-              onPressed: () {
-                print("searchclicked");
-              },
+              onPressed: onpress,
             ),
           )
         ],

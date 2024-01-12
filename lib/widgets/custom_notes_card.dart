@@ -1,11 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/views/edit_notes.dart';
 
 class CustomNotesCard extends StatelessWidget {
-  CustomNotesCard();
+  CustomNotesCard({required this.note});
 
   Color getRandomColor() {
     Random random = Random();
@@ -17,24 +20,26 @@ class CustomNotesCard extends StatelessWidget {
     return Color.fromARGB(255, red, green, blue).withOpacity(1.0);
   }
 
-  DateTime date = DateTime.now();
-  String formattedDate() {
-    return DateFormat('yyyy-MM-dd').format(date);
-  }
+  // DateTime date = DateTime.now();
+  // String formattedDate() {
+  //   return DateFormat('yyyy-MM-dd').format(date);
+  // }
+
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return EditNoteView();
+          return EditNoteView(note: note,);
         }));
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.only(bottom: 24),
         decoration: BoxDecoration(
-            color: getRandomColor(), borderRadius: BorderRadius.circular(15)),
+            color: Color(note.color), borderRadius: BorderRadius.circular(15)),
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,8 +52,8 @@ class CustomNotesCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Flutter Tips",
+                  Text(
+                    note.title,
                     style: TextStyle(fontSize: 28, color: Colors.black),
                   ),
                   const SizedBox(
@@ -58,7 +63,7 @@ class CustomNotesCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50.0),
                     child: Text(
-                      "Build your career with\n tharwt samy",
+                      note.subtitle,
                       style: TextStyle(
                           fontSize: 20,
                           height: 1,
@@ -86,7 +91,8 @@ class CustomNotesCard extends StatelessWidget {
                       size: 30,
                     ),
                     onPressed: () {
-                      print("object");
+                      note.delete();
+                      BlocProvider.of<NotesCubit>(context).fetchAllnotes();
                     },
                   ),
                   const SizedBox(
@@ -103,7 +109,7 @@ class CustomNotesCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        formattedDate(),
+                        note.date,
                         style: TextStyle(color: Colors.black),
                       ),
                     ],

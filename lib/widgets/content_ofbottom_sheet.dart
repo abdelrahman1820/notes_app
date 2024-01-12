@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notesapp/const.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_note_state.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 
 import 'package:notesapp/widgets/custom_add_botton.dart';
@@ -56,6 +57,8 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
               print("faild${state.errMessgae}");
             }
             if (state is AddNoteSuccess) {
+              BlocProvider.of<NotesCubit>(context).fetchAllnotes();
+
               Navigator.pop(context);
             }
           },

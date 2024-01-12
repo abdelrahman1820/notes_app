@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/const.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notesapp/models/note_model.dart';
 
 import 'package:notesapp/widgets/content_ofbottom_sheet.dart';
 import 'package:notesapp/widgets/custom_add_botton.dart';
@@ -7,7 +10,8 @@ import 'package:notesapp/widgets/custom_app_bar.dart';
 import 'package:notesapp/widgets/custom_text_field.dart';
 
 class EditNoteViewBody extends StatefulWidget {
-  const EditNoteViewBody({super.key});
+  EditNoteViewBody({super.key, required this.note});
+  final NoteModel note;
 
   @override
   State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
@@ -25,6 +29,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
     super.dispose();
   }
 
+  String? title, content;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -40,12 +46,23 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 50.0),
-                child: CustomAppBar(text: "Editnotes", icon: Icons.done),
+                child: CustomAppBar(
+                  text: "Editnotes",
+                  icon: Icons.done,
+                  onpress: () {
+                    widget.note.title = title ?? widget.note.title;
+                    widget.note.subtitle = content ?? widget.note.subtitle;
+                    widget.note.save();
+                    BlocProvider.of<NotesCubit>(context).fetchAllnotes();
+                    Navigator.pop(context);
+                  },
+                ),
               ),
               EditInPutText(
                   onChanged: (value) {
+                    title = value;
                     setState(() {
                       isEmptytitle = value.isEmpty;
                     });
@@ -54,7 +71,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                   focusNodee: titleFocusNode,
                   isEmpty: isEmptytitle,
                   myicon: Icons.title,
-                  myhint: "enter title",
+                  myhint: widget.note.title,
                   mylabel: "title",
                   input: TextInputType.text),
               const SizedBox(
@@ -63,6 +80,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               EditInPutText(
                   libe: 4,
                   onChanged: (value) {
+                    content = value;
                     setState(() {
                       isEmptyprice = value.isEmpty;
                     });
@@ -71,13 +89,12 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                   focusNodee: notestFocusNode,
                   isEmpty: isEmptyprice,
                   myicon: Icons.note_alt_rounded,
-                  myhint: "enter notes",
+                  myhint: widget.note.subtitle,
                   mylabel: "notes",
                   input: TextInputType.text),
               const SizedBox(
                 height: 45,
               ),
-               CustomAddButtomButton(ontap: () {  },)
             ],
           ),
         ),
