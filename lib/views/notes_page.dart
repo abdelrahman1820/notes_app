@@ -1,27 +1,22 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/widgets/content_ofbottom_sheet.dart';
-import 'package:notesapp/widgets/custom_app_bar.dart';
-import 'package:notesapp/widgets/custom_notes_card.dart';
-import 'package:notesapp/widgets/custom_text_field.dart';
-import 'package:notesapp/widgets/notes.list_view.dart';
 import 'package:notesapp/widgets/notes_body.dart';
 
-class NotesPage extends StatefulWidget {
-  NotesPage({Key? key}) : super(key: key);
+class NotesPage extends StatelessWidget {
+   NotesPage({Key? key}) : super(key: key);
 
-  @override
-  State<NotesPage> createState() => _NotesPageState();
-}
+  final _searchTextcontroler = TextEditingController();
 
+  bool isSearched = false;
 
-class _NotesPageState extends State<NotesPage> {
-  
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // resizeToAvoidBottomInset:false,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
@@ -33,7 +28,8 @@ class _NotesPageState extends State<NotesPage> {
               context: context,
               builder: (BuildContext context) {
                 return Padding(
-                  padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
                   child: const SingleChildScrollView(
                     child: ContentOfBootomSheet(),
                   ),
@@ -43,6 +39,9 @@ class _NotesPageState extends State<NotesPage> {
           },
           child: const Icon(Icons.add),
         ),
-        body: const NotesBody());
+        body: NotesBody(
+          isSearched: isSearched,
+          mycontroler: _searchTextcontroler,
+        ));
   }
 }

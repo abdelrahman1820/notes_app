@@ -79,7 +79,7 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
                   height: 600,
                   child: Center(
                     child: Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 40,
                       ),
                       child: Column(
@@ -117,7 +117,7 @@ class _ContentOfBootomSheetState extends State<ContentOfBootomSheet> {
                             input: TextInputType.text,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                               top: 40.0,
                             ),
                             child: CustomAddButtomButton(

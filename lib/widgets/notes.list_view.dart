@@ -5,46 +5,24 @@ import 'package:notesapp/cubits/notes_cubit/notes_state.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/widgets/custom_notes_card.dart';
 
-class NotesListView extends StatefulWidget {
+class NotesListView extends StatelessWidget {
   const NotesListView({
+    required this.notes,
     super.key,
   });
-
-  @override
-  State<NotesListView> createState() => _NotesListViewState();
-}
-
-class _NotesListViewState extends State<NotesListView> {
-  void didUpdateWidget(covariant NotesListView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
+  final List<NoteModel> notes;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotesCubit, NotesState>(
-      builder: (context, state) {
-        List<NoteModel> notes =
-            BlocProvider.of<NotesCubit>(context).notes ?? [];
-        return Padding(
-          padding:
-              const EdgeInsets.only(top: 12.0, left: 12, right: 12, bottom: 8),
-          child
-              // child: notes.isEmpty
-              //     ? const Center(
-              //         child: Text(
-              //         "there is no notes",
-              //         style: TextStyle(fontSize: 30),
-              //       ))
-              : ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: notes.length, // Specify the number of items in the list
-            itemBuilder: (BuildContext context, int index) {
-              return CustomNotesCard(
-                  note: notes[index]); // Use the custom card widget directly
-            },
-          ),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.only(top: 12.0, left: 12, right: 12, bottom: 8),
+      child: ListView.builder(
+        padding: EdgeInsets.zero,
+        itemCount: notes.length,
+        itemBuilder: (BuildContext context, int index) {
+          return CustomNotesCard(note: notes[index]);
+        },
+      ),
     );
   }
 }

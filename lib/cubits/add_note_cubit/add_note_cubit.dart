@@ -19,7 +19,7 @@ class Addnotecubit extends Cubit<AddNoteState> {
           errMessgae: e.toString(),
         ),
       );
-      // TODO
+   
     }
   }
 }

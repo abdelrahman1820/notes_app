@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class EditInPutText extends StatelessWidget {
   final TextEditingController textController;
@@ -13,7 +12,7 @@ class EditInPutText extends StatelessWidget {
   int? libe;
 
   EditInPutText(
-      {required this.textController,
+      {super.key, required this.textController,
       required this.focusNodee,
       required this.isEmpty,
       required this.myicon,
@@ -44,7 +43,7 @@ class EditInPutText extends StatelessWidget {
               minWidth: 40, minHeight: 40), // Added icon size constraints
           prefixIconColor: Colors.black,
           hintText: myhint,
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: const TextStyle(color: Colors.grey),
           labelText: mylabel,
           labelStyle: const TextStyle(
             fontWeight: FontWeight.bold,

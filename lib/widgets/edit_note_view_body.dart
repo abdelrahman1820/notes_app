@@ -4,13 +4,11 @@ import 'package:notesapp/const.dart';
 import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 
-import 'package:notesapp/widgets/content_ofbottom_sheet.dart';
-import 'package:notesapp/widgets/custom_add_botton.dart';
 import 'package:notesapp/widgets/custom_app_bar.dart';
 import 'package:notesapp/widgets/custom_text_field.dart';
 
 class EditNoteViewBody extends StatefulWidget {
-  EditNoteViewBody({super.key, required this.note});
+  const EditNoteViewBody({super.key, required this.note});
   final NoteModel note;
 
   @override
@@ -47,16 +45,37 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 50.0),
+                padding: const EdgeInsets.only(top: 50.0),
                 child: CustomAppBar(
                   text: "Editnotes",
-                  icon: Icons.done,
+                  
                   onpress: () {
                     widget.note.title = title ?? widget.note.title;
                     widget.note.subtitle = content ?? widget.note.subtitle;
                     widget.note.save();
                     BlocProvider.of<NotesCubit>(context).fetchAllnotes();
-                    Navigator.pop(context);
+
+                    // ignore: use_build_context_synchronously
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.all(10),
+                        content: Row(
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.blue),
+                            SizedBox(width: 8),
+                            Text("Notes Edit"),
+                          ],
+                        ),
+                        backgroundColor:
+                            Colors.green, // Customize the background color
+                        duration: Duration(
+                            seconds: 3), // Adjust the duration as needed
+                      ),
+                    );
+                    Future.delayed(const Duration(seconds: 2), () {
+                      Navigator.pop(context);
+                    });
                   },
                 ),
               ),
